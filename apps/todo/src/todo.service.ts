@@ -9,7 +9,7 @@ export class TodoService {
   constructor(private readonly todoRepository : TodoRepository){}
 
   async createTodo(createTodoRequest : CreateTodoRequest) : Promise<Todo>{
-    const initTodoStatus = TodoStatus.ACTIVE;
+    const initTodoStatus = TodoStatus.NEW;
     const todo = {
       ...createTodoRequest,
       status: initTodoStatus,
