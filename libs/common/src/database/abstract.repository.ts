@@ -1,12 +1,10 @@
 import { Model, Types, UpdateQuery } from 'mongoose';
-import { IAbstractRepository } from './abstract.repository.interface';
 import { AbstractDocument } from './abstract.schema';
 import { Connection } from 'mongoose';
 import { FilterQuery } from 'mongoose';
 import { NotFoundException } from '@nestjs/common';
 
 export class AbstractRepository<TDocument extends AbstractDocument>
-  implements IAbstractRepository<TDocument>
 {
   constructor(
     protected readonly model: Model<TDocument>,

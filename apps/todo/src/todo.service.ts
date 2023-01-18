@@ -5,7 +5,7 @@ import { TodoRepository } from './todo.repository';
 import { Todo } from './schemas/todo.schema';
 
 @Injectable()
-export class TodoService {
+export class TodoService{
   constructor(private readonly todoRepository : TodoRepository){}
 
   async createTodo(createTodoRequest : CreateTodoRequest) : Promise<Todo>{
