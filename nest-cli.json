@@ -27,6 +27,15 @@
       "compilerOptions": {
         "tsConfigPath": "libs/common/tsconfig.lib.json"
       }
+    },
+    "employee": {
+      "type": "application",
+      "root": "apps/employee",
+      "entryFile": "main",
+      "sourceRoot": "apps/employee/src",
+      "compilerOptions": {
+        "tsConfigPath": "apps/employee/tsconfig.app.json"
+      }
     }
   }
 }
