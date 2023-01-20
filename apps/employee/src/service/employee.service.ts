@@ -5,11 +5,19 @@ import { EmployeeRepository } from './employee.repository';
 import { ReadEmployeeRequest } from '../dto/read.employee';
 import { Types } from 'mongoose';
 import { ObjectId } from 'mongoose';
-import { DeleteEmployeeRequest } from '../dto/delete.employee';
+import { UpdateEmployeeRequest } from '../dto/update.employee';
 
 @Injectable()
 export class EmployeeService {
     constructor(private readonly employeeRepository: EmployeeRepository) { }
+
+    private extractEmployee(updateEmployeeReq : UpdateEmployeeRequest){
+        return {
+            firstName: updateEmployeeReq.firstName,
+            lastName: updateEmployeeReq.lastName,
+            designation: updateEmployeeReq.designation,
+        }
+    }
 
     async createEmployee(createEmployeeReq: CreateEmployeeRequest): Promise<Employee> {
         const employee = createEmployeeReq as Employee;
@@ -19,5 +27,26 @@ export class EmployeeService {
 
     async readEmployee(_id : string): Promise<Employee | null> {
         return this.employeeRepository.findOne({ _id })
+    }
+
+    async removeEmployee(_id : string): Promise<Employee | null> {
+        try{
+            const employee = await this.employeeRepository.remove({ _id })
+            return employee;
+        }
+        catch(err) {
+            return null;
+        }
+    }
+
+    async updateEmployee(updateEmployeeReq : UpdateEmployeeRequest) : Promise<Employee | null> {
+        const newEmpDoc = this.extractEmployee(updateEmployeeReq);
+        try{
+            const employee = await this.employeeRepository.update({ _id: updateEmployeeReq._id}, newEmpDoc);
+            return employee;
+        }
+        catch(err) {
+            return null;
+        }
     }
 }

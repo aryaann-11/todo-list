@@ -1,7 +1,7 @@
 import { IsNotEmpty, IsString } from "class-validator";
 
-export class DeleteEmployeeRequest{
+export class RemoveEmployeeRequest{
     @IsNotEmpty()
     @IsString()
-    id: string;
+    _id: string;
 }

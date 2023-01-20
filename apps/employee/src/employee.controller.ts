@@ -2,6 +2,8 @@ import { Controller, Get, Post, Body, Param, BadRequestException } from '@nestjs
 import { CreateEmployeeRequest } from './dto/create.employee';
 import { Employee } from './schema/employee.schema';
 import { EmployeeService } from './service/employee.service';
+import { RemoveEmployeeRequest } from './dto/remove.employee';
+import { UpdateEmployeeRequest } from './dto/update.employee';
 
 enum ERROR_CODES {
   NOT_FOUND = 1
@@ -24,5 +26,23 @@ export class EmployeeController {
       return new BadRequestException(ERROR_CODES.NOT_FOUND)
     } 
     return readResult;
+  }
+
+  @Post('/remove')
+  async removeOne(@Body() removeEmployeeReq: RemoveEmployeeRequest) : Promise<Employee | BadRequestException>{
+    const removeResult = await this.employeeService.removeEmployee(removeEmployeeReq._id);
+    if(!removeResult){
+      return new BadRequestException(ERROR_CODES.NOT_FOUND)
+    }
+    return removeResult;
+  }
+
+  @Post('/update')
+  async updateOne(@Body() updateEmployeeReq: UpdateEmployeeRequest) : Promise<UpdateEmployeeRequest | BadRequestException>{
+    const updateResult = await this.employeeService.updateEmployee(updateEmployeeReq);
+    if(!updateResult){
+      return new BadRequestException(ERROR_CODES.NOT_FOUND)
+    }
+    return updateEmployeeReq;
   }
 }
