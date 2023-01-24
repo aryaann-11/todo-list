@@ -3,13 +3,14 @@ import { Model, Connection } from 'mongoose';
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
 import { Injectable } from "@nestjs/common";
 import { Employee } from "../schema/employee.schema";
+import { IEmployeeRepository } from "./abstract.employee.repository";
 
 @Injectable()
-export class EmployeeRepository extends AbstractRepository<Employee>{
+export class EmployeeRepository extends AbstractRepository<Employee> implements IEmployeeRepository{
     constructor(
-        @InjectModel(Employee.name) todoModel : Model<Employee>,
+        @InjectModel(Employee.name) employeeModel : Model<Employee>,
         @InjectConnection() connection : Connection
     ){
-        super(todoModel, connection);
+        super(employeeModel, connection);
     }
 }

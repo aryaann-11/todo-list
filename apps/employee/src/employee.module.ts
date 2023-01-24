@@ -8,6 +8,7 @@ import { Employee } from './schema/employee.schema';
 import { EmployeeSchema } from './schema/employee.schema';
 import * as Joi from 'joi';
 import { EmployeeRepository } from './service/employee.repository';
+import { IEmployeeRepository } from './service/abstract.employee.repository';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -21,6 +22,6 @@ import { EmployeeRepository } from './service/employee.repository';
   DatabaseModule,
   MongooseModule.forFeature([{ name: Employee.name, schema: EmployeeSchema }]),],
   controllers: [EmployeeController],
-  providers: [EmployeeService, EmployeeRepository],
+  providers: [EmployeeService, {provide: IEmployeeRepository, useClass: EmployeeRepository}],
 })
 export class EmployeeModule {}
