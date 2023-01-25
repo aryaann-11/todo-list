@@ -7,7 +7,7 @@ import { RemoveEmployeeRequest } from "../src/dto/remove.employee";
 import { UpdateEmployeeRequest } from "../src/dto/update.employee";
 import { EmployeeController } from "../src/employee.controller";
 import { Employee } from "../src/schema/employee.schema";
-import { IEmployeeService } from "../src/service/abstract.employee.service";
+import { IEmployeeService } from "../src/abstract/abstract.employee.service";
 import { MockEmployeeService } from "./mock.employee.service";
 
 

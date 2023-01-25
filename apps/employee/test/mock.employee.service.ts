@@ -2,7 +2,7 @@ import { Types } from "mongoose";
 import { CreateEmployeeRequest } from "../src/dto/create.employee";
 import { UpdateEmployeeRequest } from "../src/dto/update.employee";
 import { Employee } from "../src/schema/employee.schema";
-import { IEmployeeService } from "../src/service/abstract.employee.service";
+import { IEmployeeService } from "../src/abstract/abstract.employee.service";
 
 
 export class MockEmployeeService implements IEmployeeService {

@@ -3,7 +3,7 @@ import { Model, Connection } from 'mongoose';
 import { InjectConnection, InjectModel } from "@nestjs/mongoose";
 import { Injectable } from "@nestjs/common";
 import { Employee } from "../schema/employee.schema";
-import { IEmployeeRepository } from "./abstract.employee.repository";
+import { IEmployeeRepository } from "../abstract/abstract.employee.repository";
 
 @Injectable()
 export class EmployeeRepository extends AbstractRepository<Employee> implements IEmployeeRepository{

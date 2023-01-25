@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, BadRequestException } from '@nestjs/common';
 import { CreateEmployeeRequest } from './dto/create.employee';
 import { Employee } from './schema/employee.schema';
-import { IEmployeeService } from './service/abstract.employee.service';
+import { IEmployeeService } from './abstract/abstract.employee.service';
 import { RemoveEmployeeRequest } from './dto/remove.employee';
 import { UpdateEmployeeRequest } from './dto/update.employee';
 

@@ -1,7 +1,7 @@
 import { NotFoundException, NotImplementedException } from "@nestjs/common";
 import { FilterQuery, Types } from "mongoose";
 import { Employee } from "../src/schema/employee.schema";
-import { IEmployeeRepository } from "../src/service/abstract.employee.repository";
+import { IEmployeeRepository } from "../src/abstract/abstract.employee.repository";
 
 export class MockEmployeeRepository implements IEmployeeRepository{
     private employees : Employee[];

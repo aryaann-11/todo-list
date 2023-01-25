@@ -3,7 +3,7 @@ import { EmployeeService } from "../src/service/employee.service";
 import { CreateEmployeeRequest } from "../src/dto/create.employee";
 import {  Types } from "mongoose";
 import { MockEmployeeRepository } from "./mock-employee.repository";
-import { IEmployeeRepository } from "../src/service/abstract.employee.repository";
+import { IEmployeeRepository } from "../src/abstract/abstract.employee.repository";
 
 describe("EmployeeService", () => {
     let employeeService: EmployeeService;
