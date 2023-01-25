@@ -1,7 +1,7 @@
 import { Controller, Get, Post, Body, Param, BadRequestException } from '@nestjs/common';
 import { CreateEmployeeRequest } from './dto/create.employee';
 import { Employee } from './schema/employee.schema';
-import { EmployeeService } from './service/employee.service';
+import { IEmployeeService } from './service/abstract.employee.service';
 import { RemoveEmployeeRequest } from './dto/remove.employee';
 import { UpdateEmployeeRequest } from './dto/update.employee';
 
@@ -12,7 +12,7 @@ enum ERROR_CODES {
 
 @Controller('employee')
 export class EmployeeController {
-  constructor(private readonly employeeService: EmployeeService) {}
+  constructor(private readonly employeeService: IEmployeeService) {}
 
   @Post()
   async create(@Body() createEmployeeReq: CreateEmployeeRequest) : Promise<Employee> {

@@ -9,6 +9,7 @@ import { EmployeeSchema } from './schema/employee.schema';
 import * as Joi from 'joi';
 import { EmployeeRepository } from './service/employee.repository';
 import { IEmployeeRepository } from './service/abstract.employee.repository';
+import { IEmployeeService } from './service/abstract.employee.service';
 
 @Module({
   imports: [ConfigModule.forRoot({
@@ -22,6 +23,7 @@ import { IEmployeeRepository } from './service/abstract.employee.repository';
   DatabaseModule,
   MongooseModule.forFeature([{ name: Employee.name, schema: EmployeeSchema }]),],
   controllers: [EmployeeController],
-  providers: [EmployeeService, {provide: IEmployeeRepository, useClass: EmployeeRepository}],
+  providers: [{provide : IEmployeeService, useClass: EmployeeService}, 
+    {provide: IEmployeeRepository, useClass: EmployeeRepository}],
 })
 export class EmployeeModule {}

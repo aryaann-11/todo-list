@@ -1,12 +1,7 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { EmployeeService } from "../src/service/employee.service";
-import { getConnectionToken, getModelToken } from "@nestjs/mongoose";
-import { Employee } from "../src/schema/employee.schema";
 import { CreateEmployeeRequest } from "../src/dto/create.employee";
-import { EmployeeRepository } from "../src/service/employee.repository";
-import { Connection, Model, Types } from "mongoose";
-import { MongooseModule } from "@nestjs/mongoose";
-import { EmployeeSchema } from "../src/schema/employee.schema";
+import {  Types } from "mongoose";
 import { MockEmployeeRepository } from "./mock-employee.repository";
 import { IEmployeeRepository } from "../src/service/abstract.employee.repository";
 
@@ -106,6 +101,32 @@ describe("EmployeeService", () => {
         })
     })
 
+    describe('Find should return null if employee does not exist', ()=>{
+        it('should return null if employee does not exist', async () => {
+            const id = '1';
+            const result = await employeeService.readEmployee(id);
+            expect(result).toBeNull();
+        })
+    })
 
-    
+    describe('Remove should return null if employee does not exist', ()=>{
+        it('should return null if employee does not exist', async () => {
+            const id = '1';
+            const result = await employeeService.removeEmployee(id);
+            expect(result).toBeNull();
+        })
+    })
+
+    describe('Update should return null if employee does not exist', ()=>{
+        it('should return null if employee does not exist', async () => {
+            const newEmp = {
+                _id : "1",
+                firstName : "New first name",
+                lastName : "New last name",
+                designation : "New designation"
+            }
+            const result = await employeeService.updateEmployee(newEmp);
+            expect(result).toBeNull();
+        })
+    })
 })

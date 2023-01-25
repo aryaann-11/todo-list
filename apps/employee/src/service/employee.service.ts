@@ -1,15 +1,12 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotFoundException } from '@nestjs/common';
 import { CreateEmployeeRequest } from '../dto/create.employee';
 import { Employee } from '../schema/employee.schema';
-import { EmployeeRepository } from './employee.repository';
 import { IEmployeeRepository } from './abstract.employee.repository';
-import { ReadEmployeeRequest } from '../dto/read.employee';
-import { Types } from 'mongoose';
-import { ObjectId } from 'mongoose';
 import { UpdateEmployeeRequest } from '../dto/update.employee';
+import { IEmployeeService } from './abstract.employee.service';
 
 @Injectable()
-export class EmployeeService {
+export class EmployeeService implements IEmployeeService{
     constructor(private readonly employeeRepository: IEmployeeRepository) { }
 
     private extractEmployee(updateEmployeeReq : UpdateEmployeeRequest){
@@ -28,7 +25,14 @@ export class EmployeeService {
     }
 
     async readEmployee(_id : string): Promise<Employee | null> {
-        return this.employeeRepository.findOne({ _id })
+        try{
+            const result = await this.employeeRepository.findOne({ _id })
+            return result;
+        }
+        catch(e){
+            console.log(e);
+            return null;
+        }
     }
 
     async removeEmployee(_id : string): Promise<Employee | null> {
