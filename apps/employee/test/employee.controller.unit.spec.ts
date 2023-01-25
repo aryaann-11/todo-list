@@ -42,7 +42,7 @@ describe('Employee Controller', () => {
                 lastName : 'Doe',
                 designation : 'Software Engineer'
             }
-            const result = await employeeService.createEmployee(doc);
+            const result = await employeeController.create(doc);
             expect(result._id).toBeInstanceOf(Types.ObjectId);
             const returnedEmp : CreateEmployeeRequest = {
                 firstName : result.firstName,
