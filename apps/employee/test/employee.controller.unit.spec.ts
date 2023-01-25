@@ -117,7 +117,9 @@ describe('Employee Controller', () => {
             const result = await employeeController.updateOne(req) as UpdateEmployeeRequest;
             const returnedDoc = {
                 _id : '1',
-                ...req
+                firstName : result.firstName,
+                lastName : result.lastName,
+                designation : result.designation
             }
             expect(returnedDoc).toEqual(req);
         })
